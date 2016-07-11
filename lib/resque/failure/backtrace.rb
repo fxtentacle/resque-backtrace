@@ -3,7 +3,7 @@ module Resque
     class Backtrace < Base
       def save
         bt = filter_backtrace(Array(exception.backtrace))
-        worker.log bt.join("\n")
+        worker.log_with_severity :error, bt.join("\n")
       end
 
       private
